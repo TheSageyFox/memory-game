@@ -1,8 +1,33 @@
 /*
  * Create a list that holds all of your cards
  */
+let cards=[];
+let openCards=[];
 
+// let cardHTML= `<li class="card"><i class="fa ${cardClass}"></i></li>`
+function flipCard(){
+	if(!this.classList.contains('open show')&&!this.classList.contains('match')){
+		$(this).addClass('open show');
+		openCards.push(this.id);
+			if(openCards.length == 2){
+				if(openCards[0] === openCards[1]){
+					$(openCards[0]).addClass('match');
+					$(openCards[1]).addClass('match');
+					console.log(openCards);
+					// openCards=[];
+				}else{
+					setTimeout(function(){
+					openCards.forEach(function(){
+						$('.card').removeClass('open show');
+					});
+					openCards=[];
+				}, 1000);}
+				
+			}
+	};
 
+};
+$('.card').click(flipCard);
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -23,7 +48,7 @@ function shuffle(array) {
     }
 
     return array;
-}
+};
 
 
 /*
