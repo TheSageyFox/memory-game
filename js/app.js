@@ -1,10 +1,25 @@
 /*
  * Create a list that holds all of your cards
  */
-let cards=[];
+let cards=['fa-diamond', 'fa-diamond',
+		   'fa-paper-plane-o', 'fa-paper-plane-o',
+		   'fa-anchor', 'fa-anchor',
+		   'fa-bolt', 'fa-bolt',
+		   'fa-cube', 'fa-cube',
+		   'fa-leaf', 'fa-leaf',
+		   'fa-bicycle', 'fa-bicycle',
+		   'fa-bomb', 'fa-bomb'];
 let openCards=[];
+let deck = document.querySelector('.deck');
+let indCard = shuffle(cards).map(function generateCard(card){
+	return `<li class="card" id="${card}"><i class="fa ${card}"></i></li>`;
+});
 
-// let cardHTML= `<li class="card"><i class="fa ${cardClass}"></i></li>`
+function generateCard(card){
+	return `<li class="card" id="${card}"><i class="fa ${card}"></i></li>`;
+};
+
+deck.innerHTML=indCard.join('');
 function flipCard(){
 	if(!this.classList.contains('open show')&&!this.classList.contains('match')){
 		$(this).addClass('open show');
@@ -13,16 +28,16 @@ function flipCard(){
 				if(openCards[0] === openCards[1]){
 					$(openCards[0]).addClass('match');
 					$(openCards[1]).addClass('match');
-					console.log(openCards);
-					// openCards=[];
-				}else{
-					setTimeout(function(){
-					openCards.forEach(function(){
-						$('.card').removeClass('open show');
-					});
+					console.log('match');
 					openCards=[];
-				}, 1000);}
-				
+				}else{
+				// 	setTimeout(function(){
+				// 	openCards.forEach(function(){
+				// 		$('.card').removeClass('open show');
+				// 	});
+				// 	openCards=[];
+				// }, 1000);
+				}
 			}
 	};
 
