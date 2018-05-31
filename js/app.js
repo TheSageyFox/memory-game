@@ -1,6 +1,3 @@
-/*
- * Create a list that holds all of your cards
- */
 let cards=['fa-diamond', 'fa-diamond',
 		   'fa-paper-plane-o', 'fa-paper-plane-o',
 		   'fa-anchor', 'fa-anchor',
@@ -15,11 +12,8 @@ let indCard = shuffle(cards).map(function generateCard(card){
 	return `<li class="card" id="${card}"><i class="fa ${card}"></i></li>`;
 });
 
-function generateCard(card){
-	return `<li class="card" id="${card}"><i class="fa ${card}"></i></li>`;
-};
-
 deck.innerHTML=indCard.join('');
+
 function flipCard(){
 	if(!this.classList.contains('open show')&&!this.classList.contains('match')){
 		$(this).addClass('open show');
@@ -42,6 +36,7 @@ function flipCard(){
 	};
 
 };
+
 $('.card').click(flipCard);
 /*
  * Display the cards on the page
@@ -65,6 +60,31 @@ function shuffle(array) {
     return array;
 };
 
+/* Star Score*/
+
+let starCount = document.querySelector('.stars').innerHTML
+
+function starScore(mCount){
+	let star="";
+	let sCount=document.querySelector('.stars')
+	if (mCount > 0 && mCount < 10){
+			sCount.innerHTML=starHTML(3);
+		}else if (mCount >= 11 && mCount <20){
+			sCount.innerHTML=starHTML(2);
+		}else if (mCount>=21 && mCount <30){
+			sCount.innerHTML=starHTML(1);
+		}else if (mCount >31){
+			sCount.innerHTML=starHTML(0);
+		}
+	};
+
+function starHTML(starsLeft){
+	let star = "";
+	for(let i =0; i<starsLeft; i++){
+		star+= '<li><i class="fa fa-star"></i></li>'
+}
+document.querySelector('.stars').innerHTML = star;
+};
 
 /*
  * set up the event listener for a card. If a card is clicked:
