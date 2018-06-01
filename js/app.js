@@ -16,21 +16,21 @@ deck.innerHTML=indCard.join('');
 
 function flipCard(){
 	if(!this.classList.contains('open show')&&!this.classList.contains('match')){
+		openCards.push(this);
 		$(this).addClass('open show');
-		openCards.push(this.id);
 			if(openCards.length == 2){
-				if(openCards[0] === openCards[1]){
+				if(openCards[0].id === openCards[1].id){
 					$(openCards[0]).addClass('match');
 					$(openCards[1]).addClass('match');
 					console.log('match');
 					openCards=[];
 				}else{
-				// 	setTimeout(function(){
-				// 	openCards.forEach(function(){
-				// 		$('.card').removeClass('open show');
-				// 	});
-				// 	openCards=[];
-				// }, 1000);
+					setTimeout(function(){
+					openCards.forEach(function(){
+						$('.card').removeClass('open show');
+					});
+					openCards=[];
+				}, 1000);
 				}
 			}
 	};
@@ -38,6 +38,8 @@ function flipCard(){
 };
 
 $('.card').click(flipCard);
+
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -65,7 +67,13 @@ function shuffle(array) {
 let starCount = document.querySelector('.stars').innerHTML
 
 function starScore(mCount){
-	let star="";
+	function starHTML(starsLeft){
+	let star = "";
+	for(let i =0; i<starsLeft; i++){
+		star+= '<li><i class="fa fa-star"></i></li>'
+}
+document.querySelector('.stars').innerHTML = star;
+};
 	let sCount=document.querySelector('.stars')
 	if (mCount > 0 && mCount < 10){
 			sCount.innerHTML=starHTML(3);
@@ -78,13 +86,6 @@ function starScore(mCount){
 		}
 	};
 
-function starHTML(starsLeft){
-	let star = "";
-	for(let i =0; i<starsLeft; i++){
-		star+= '<li><i class="fa fa-star"></i></li>'
-}
-document.querySelector('.stars').innerHTML = star;
-};
 
 /*
  * set up the event listener for a card. If a card is clicked:
