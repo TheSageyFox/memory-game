@@ -7,16 +7,35 @@ let cards=['fa-diamond', 'fa-diamond',
 		   'fa-bicycle', 'fa-bicycle',
 		   'fa-bomb', 'fa-bomb'];
 let openCards=[];
-let deck = document.querySelector('.deck');
-let indCard = shuffle(cards).map(function generateCard(card){
+let matches = 0;
+let deck=document.querySelector('.deck');
+let indCard=cards.map(function generateCard(card){
 	return `<li class="card" id="${card}"><i class="fa ${card}"></i></li>`;
 });
-let moves = document.getElementById('moves').innerHTML;
-moves = 0;
+let moves=document.getElementById('moves').innerHTML=0;
+moves=0;
+deck.innerHTML=shuffle(indCard).join('');
 
+//JS for Modal 
+let modal=document.querySelector('#win');
+let close=document.querySelector('.close');
 
-deck.innerHTML=indCard.join('');
-
+function openModal(){
+	document.querySelector('#final-stars').innerHTML = document.querySelector('.stars').innerHTML;
+	document.querySelector('#final-time').innerHTML = document.querySelector('.timer').innerHTML;
+	document.querySelector('#final-moves').innerHTML = moves;
+	$('#win').attr('style', 'display:block');
+}
+function closeModal(){
+	$('#win').attr('style', 'display:none');
+}
+function resetWithModal(){
+	closeModal();
+	reset();
+}
+$('.close').click(closeModal);
+$('#no').click(closeModal);
+$('#yes').click(resetWithModal);
 
 function flipCard(){
 	if(!this.classList.contains('open show')&&!this.classList.contains('match')){
@@ -27,6 +46,10 @@ function flipCard(){
 					$(openCards[0]).addClass('match');
 					$(openCards[1]).addClass('match');
 					openCards=[];
+					matches +=1;
+						if (matches == 8){
+						openModal();
+						};
 				}else{
 					setTimeout(function(){
 					openCards.forEach(function(){
@@ -41,12 +64,7 @@ function flipCard(){
 };
 
 $('.card').click(flipCard);
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -113,11 +131,51 @@ function setTime(){
 	secondsLabel.innerHTML=pad(totalSeconds%60);
 	minutesLabel.innerHTML=pad(parseInt(totalSeconds/60));
 };
+function stopTime(){
+	clearInterval(timer);
+};
 
 /*Reset Function */
 function reset(){
-	deck.innerHTML=indCard.join('');
-	clearInterval(timer);
-	setInterval(setTime, 1000);
+	moves=document.querySelector('.moves').innerHTML=0;
+	deck.innerHTML=shuffle(indCard).join('');
+	$('.card').click(flipCard);
+	$('.card').click(moveCounter);
+	totalSeconds=0;
+	secondsLabel.innerHTML='00';
+	minutesLabel.innerHTML='00';
 };
+<<<<<<< HEAD
 $('#reset').click(reset);
+||||||| parent of f06a5b2... Feat: modal for winning fully functional
+$('#reset').click(reset);
+
+
+//JS for Modal 
+let modal=document.querySelector('#win');
+let close=document.querySelector('.close');
+let fStars=document.querySelector('#final-stars');
+let stars=document.querySelector('.stars').innerHTML;
+let fTime=document.querySelector('#final-time');
+let fMoves=document.querySelector('#final-moves');
+function openModal(){
+	fStars.innerHTML = document.querySelector('.stars').innerHTML;
+	fTime.innerHTML = document.querySelector('.timer').innerHTML;
+	fMoves.innerHTML = moves;
+	$('#win').attr('style', 'display:block');
+}
+function closeModal(){
+	$('#win').attr('style', 'display:none');
+}
+function resetWithModal(){
+	closeModal();
+	reset();
+}
+$('.close').click(closeModal);
+$('#no').click(closeModal);
+$('#yes').click(resetWithModal);
+=======
+$('#reset').click(reset);
+
+
+>>>>>>> f06a5b2... Feat: modal for winning fully functional
