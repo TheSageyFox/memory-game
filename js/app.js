@@ -69,9 +69,9 @@ function moveCounter(){
 	moves += 1;
 	document.querySelector('.moves').innerHTML = moves;
 };
-
 function starScore(mCount){
 	let star = "";
+
 	function starHTML(starsLeft){
 		for(let i =0; i<starsLeft; i++){
 		star+= '<li><i class="fa fa-star"></i></li>'
@@ -94,3 +94,23 @@ function starScore(mCount){
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+/* Timer Function borrowed from code found at: 
+https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript*/
+let minutesLabel=document.getElementById('minutes');
+let secondsLabel=document.getElementById('seconds');
+let totalSeconds=0;
+setInterval(setTime, 1000);
+
+function setTime(){
+	++totalSeconds;
+	secondsLabel.innerHTML=pad(totalSeconds%60);
+	minutesLabel.innerHTML=pad(parseInt(totalSeconds/60));
+};
+function pad(val){
+	let valString = val + "";
+	if(valString.length(2)){
+		return "0" +valString;
+	}else{
+		return valString;
+	}
+	};
