@@ -12,7 +12,7 @@ let indCard = shuffle(cards).map(function generateCard(card){
 	return `<li class="card" id="${card}"><i class="fa ${card}"></i></li>`;
 });
 let moves = document.getElementById('moves').innerHTML;
-	moves = 0;
+moves = 0;
 
 
 deck.innerHTML=indCard.join('');
@@ -68,27 +68,26 @@ $('.card').click(moveCounter);
 function moveCounter(){
 	moves += 1;
 	document.querySelector('.moves').innerHTML = moves;
-};
-function starScore(mCount){
+};	
+function starScore(){
 	let star = "";
-
 	function starHTML(starsLeft){
 		for(let i =0; i<starsLeft; i++){
 		star+= '<li><i class="fa fa-star"></i></li>'
 		}
 		document.querySelector('.stars').innerHTML = star;
 	};
+	let mCount=document.querySelector('.moves').innerText;
 	if (mCount > 0 && mCount < 10){
 			starHTML(3);
 		}else if (mCount >= 11 && mCount <20){
 			starHTML(2);
-		}else if (mCount>=21 && mCount <30){
+		}else if (mCount >=21 && mCount <30){
 			starHTML(1);
 		}else if (mCount >31){
 			starHTML(0);
 		}
-	};
-
+};
 /*
  * set up the event listener for a card. If a card is clicked:
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
@@ -99,18 +98,26 @@ https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript*/
 let minutesLabel=document.getElementById('minutes');
 let secondsLabel=document.getElementById('seconds');
 let totalSeconds=0;
-setInterval(setTime, 1000);
 
+let timer = setInterval(setTime, 1000);
+function pad(val){
+	let valString = val + "";
+	if(valString.length < 2){
+		return '0' +valString;
+	}else{
+		return valString;
+	}
+};
 function setTime(){
 	++totalSeconds;
 	secondsLabel.innerHTML=pad(totalSeconds%60);
 	minutesLabel.innerHTML=pad(parseInt(totalSeconds/60));
 };
-function pad(val){
-	let valString = val + "";
-	if(valString.length(2)){
-		return "0" +valString;
-	}else{
-		return valString;
-	}
-	};
+
+/*Reset Function */
+function reset(){
+	deck.innerHTML=indCard.join('');
+	clearInterval(timer);
+	setInterval(setTime, 1000);
+};
+$('#reset').click(reset);
