@@ -68,11 +68,12 @@ h1 {
 .deck .card.open {
     transform: rotateY(0);
     background: #02b3e4;
+    border: 1px solid #2e3d49;
     cursor: default;
 }
 
 .deck .card.show {
-    font-size: 33px;
+    font-size: 40px;
 }
 
 .deck .card.match {
@@ -87,6 +88,7 @@ h1 {
 
 .score-panel {
     text-align: left;
+    font-size: 1.25em;
     width: 345px;
     margin-bottom: 10px;
 }
@@ -95,18 +97,21 @@ h1 {
     margin: 0;
     padding: 0;
     display: inline-block;
-    margin: 0 5px 0 0;
+    color: #02ccba;
+    margin: 0 10px;
 }
 
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+    text-shadow: 1px 1px #000000;
 }
 
 .score-panel .restart {
     float: right;
     cursor: pointer;
 }
+
 /*Modal CSS */
 .modal{
     display: none;
@@ -129,12 +134,16 @@ h1 {
     box-shadow: 5px 5px #000000;
     width: 80%;
 }
+
 .modal-content h1{
     font-family: 'Fontdiner Swanky', cursive;
     text-align: center;
+    text-shadow: 1px 1px #02ccba;
 }
 .modal-content li{
     list-style:none;
+    color: #02ccba;
+    text-shadow: 1px 1px #000000;
     display:inline-block;
 }
 .close{
@@ -143,6 +152,18 @@ h1 {
     font-size: 28;
     font-weight: bold;
 }
+#yes,
+#no{
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    border: 2px double #000000;
+    background-color: #02ccba;
+}
+.play-again{
+    text-align: center;
+}
+
 .close:hover,
 .close:focus{
     color: #000000;

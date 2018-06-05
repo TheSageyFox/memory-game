@@ -25,14 +25,14 @@ function openModal(){
 	document.querySelector('#final-time').innerHTML = document.querySelector('.timer').innerHTML;
 	document.querySelector('#final-moves').innerHTML = moves;
 	$('#win').attr('style', 'display:block');
-}
+};
 function closeModal(){
 	$('#win').attr('style', 'display:none');
-}
+};
 function resetWithModal(){
 	closeModal();
 	reset();
-}
+};
 $('.close').click(closeModal);
 $('#no').click(closeModal);
 $('#yes').click(resetWithModal);
@@ -65,7 +65,6 @@ function flipCard(){
 
 $('.card').click(flipCard);
 
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -86,25 +85,22 @@ $('.card').click(moveCounter);
 function moveCounter(){
 	moves += 1;
 	document.querySelector('.moves').innerHTML = moves;
+	if (moves > 0 && moves < 10){
+			starHTML(3);
+		}else if (moves >= 11 && moves <20){
+			starHTML(2);
+		}else if (moves >=21 && moves <30){
+			starHTML(1);
+		}else if (moves >31){
+			starHTML(0);
+		}
 };	
-function starScore(){
-	let star = "";
-	function starHTML(starsLeft){
+function starHTML(starsLeft){
+		let star = "";
 		for(let i =0; i<starsLeft; i++){
 		star+= '<li><i class="fa fa-star"></i></li>'
 		}
 		document.querySelector('.stars').innerHTML = star;
-	};
-	let mCount=document.querySelector('.moves').innerText;
-	if (mCount > 0 && mCount < 10){
-			starHTML(3);
-		}else if (mCount >= 11 && mCount <20){
-			starHTML(2);
-		}else if (mCount >=21 && mCount <30){
-			starHTML(1);
-		}else if (mCount >31){
-			starHTML(0);
-		}
 };
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -144,6 +140,7 @@ function reset(){
 	totalSeconds=0;
 	secondsLabel.innerHTML='00';
 	minutesLabel.innerHTML='00';
+	starHTML(3);
 };
 
 $('#reset').click(reset);
