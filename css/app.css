@@ -53,7 +53,7 @@ h1 {
     margin: 0 0 3em;
 }
 .deck .card {
-    height: 125px;
+    height: 115px;
     width: 115px;
     margin: 2%;
     background: #2e3d49;
@@ -168,11 +168,17 @@ h1 {
         width:75%;
     }
 }
-@media screen and (min-width: 600px){
+@media screen and (min-width: 786px){
     .deck{
-        width: 80%;
+        width: 660px;
+        padding: 32px;
+        justify-content: space-between;
+    }
+    .deck .card{
+        width: 125px;
+        height: 125px;
     }
     .score-panel{
-        width: 50%;
+        width: 30%;
     }
 }
