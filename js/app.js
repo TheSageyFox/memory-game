@@ -145,37 +145,6 @@ function reset(){
 	secondsLabel.innerHTML='00';
 	minutesLabel.innerHTML='00';
 };
-<<<<<<< HEAD
-$('#reset').click(reset);
-||||||| parent of f06a5b2... Feat: modal for winning fully functional
+
 $('#reset').click(reset);
 
-
-//JS for Modal 
-let modal=document.querySelector('#win');
-let close=document.querySelector('.close');
-let fStars=document.querySelector('#final-stars');
-let stars=document.querySelector('.stars').innerHTML;
-let fTime=document.querySelector('#final-time');
-let fMoves=document.querySelector('#final-moves');
-function openModal(){
-	fStars.innerHTML = document.querySelector('.stars').innerHTML;
-	fTime.innerHTML = document.querySelector('.timer').innerHTML;
-	fMoves.innerHTML = moves;
-	$('#win').attr('style', 'display:block');
-}
-function closeModal(){
-	$('#win').attr('style', 'display:none');
-}
-function resetWithModal(){
-	closeModal();
-	reset();
-}
-$('.close').click(closeModal);
-$('#no').click(closeModal);
-$('#yes').click(resetWithModal);
-=======
-$('#reset').click(reset);
-
-
->>>>>>> f06a5b2... Feat: modal for winning fully functional
