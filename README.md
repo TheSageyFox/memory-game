@@ -8,7 +8,7 @@
 ## Instructions for Game Play
 
 Welcome to Fox's Memory Match. To play: Select two cards by clicking or touching a card. 
-If the card's match they will stay face up, if they do not match they will turn back over. 
+If the cards match they will stay face up, if they do not match they will turn back over. 
 Continue matching the cards until all eight pairs are matched. 
 
 When you match all the pairs, you win the game! Congratulate yourself on a job well done and feel free to start over.
@@ -17,7 +17,7 @@ When you match all the pairs, you win the game! Congratulate yourself on a job w
 ## Dev Notes
 
 This has been one of the most challenging and yet rewarding projects I have worked on to date. 
-The game consists of the base code given by Udacity's FEND program, stackoverflow, and W3 Schools.
+The game consists of the base code given by Udacity's FEND program, and influenced stackoverflow, and W3 Schools.
 
 // Shuffle function http://stackoverflow.com/a/2450976
 // Timer Function https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript*/
@@ -29,7 +29,7 @@ This project uses both vanilla JavaScript and JQuery to programmatically create 
  
 The timer function, though roughly contructed, keeps track of how long it takes the player to complete a game. The timer starts on page load and continues until all eight pairs are matched and the game is won. The timer is then displayed on the winning modal. 
 
-The moves and star function keep track of the number of moves, and consquencially, the "star score" of the player. Each time a player clicks on a card, one move is added to the move count. The amount of stars a player has receives is based on the number of moves they have made during game play. 0-10 moves the player retains all three stars. 11-20 the player receives a score of two stars. 21-30 the player receives one star, and for games above 31 moves, the player does not receive any stars. 
+The moves and star function keep track of the number of moves, and consquencially, the "star score" of the player. Each time a player clicks on a card, one move is added to the move count. The amount of stars a player has receives is based on the number of moves they have made during game play. 0-20 moves the player retains all three stars. 21-40 the player receives a score of two stars. 41-60 the player receives one star, and for games above 61 moves, the player does not receive any stars. 
 
 The reset function on the upper right side of the playing board, completely resets the board. The timer is reset, deck reshuffled, stars refilled and moves set back to zero.
 
