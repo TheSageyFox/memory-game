@@ -181,7 +181,8 @@ h1 {
     .score-panel{
         width: 30%;
     }
-    .modal{
-        width: 600px;
+    .modal-content{
+        width: 50%;
+
     }
 }
