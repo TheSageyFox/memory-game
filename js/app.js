@@ -131,6 +131,7 @@ function reset(){
 	deck.innerHTML = shuffle(indCard).join('');
 	$('.card').click(flipCard);
 	$('.card').click(moveCounter);
+	matches = 0;
 	totalSeconds = 0;
 	secondsLabel.innerHTML = '00';
 	minutesLabel.innerHTML = '00';
