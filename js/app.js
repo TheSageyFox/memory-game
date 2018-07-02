@@ -1,3 +1,5 @@
+//create an array to hold the name of each of the cards that will be used during the game play. There should be eight unique names/IDs,
+// each of the names should be listed twice for a total of sixteen cards.
 let cards = ['fa-diamond', 'fa-diamond',
 		     'fa-paper-plane-o', 'fa-paper-plane-o',
 		     'fa-anchor', 'fa-anchor',
@@ -8,18 +10,28 @@ let cards = ['fa-diamond', 'fa-diamond',
 		     'fa-bomb', 'fa-bomb'];
 let openCards = [];
 let matches = 0;
+//This selects the location of the deck within the DOM. This is where the programmatically created deck will be populated.
 let deck = document.querySelector('.deck');
+//mapping through the cards array allows you to create the playing deck programmatically, with a few lines of code rather than having 
+//to write out the entire deck's HTML code. It allows you to feed the new array into the shuffle function which will create a unique 
+//deck pattern on page reload or when the game is reset.
 let indCard = cards.map(function generateCard(card){
 	return `<li class="card" id="${card}"><i class="fa ${card}"></i></li>`;
 });
+//This selects the location of the moves counter within the game and sets the initial move counter to zero.
 let moves = document.getElementById('moves').innerHTML = 0;
 moves = 0;
+//Creates the deck and inserts it into the DOM in index.html. The join('') method changes the array of indCard into a string.
 deck.innerHTML = shuffle(indCard).join('');
 
 //JS for Modal
 let modal = document.querySelector('#win');
 let close = document.querySelector('.close');
-
+//This function opens the modal upon completion of the game. It is called in the flipCard function where the number of matches
+//is assessed on each card flip. The first three lines of code in the function select the final number of stars, moves and time upon
+//winning the game. It is then fed into the HTML of the modal residing in index.html. 
+//The game timer is stopped by the stopTime(); function.
+//The modal's CSS display attribute is changed from display:none to display:block to allow the modal to appear upon winning. 
 function openModal(){
 	document.querySelector('#final-stars').innerHTML = document.querySelector('.stars').innerHTML;
 	document.querySelector('#final-time').innerHTML = document.querySelector('.timer').innerHTML;
@@ -27,19 +39,30 @@ function openModal(){
 	$('#win').attr('style', 'display:block');
 	stopTime();
 }
-
+//Closes the modal by changing the CSS style attribute of display from block to none. 
 function closeModal(){
 	$('#win').attr('style', 'display:none');
 }
-
+//Creates a function to reset the game from the modal. Using this option the modal is closed and the game reset via the 
+//reset(); function.
 function resetWithModal(){
 	closeModal();
 	reset();
 }
+//Utilizes jQuery to manipulate the modal's selection buttons to close, start a new game or exit the modal without starting a 
+//new game. 
 $('.close').click(closeModal);
 $('#no').click(closeModal);
 $('#yes').click(resetWithModal);
-
+//This function 'flips' the cards, checks the cards for a match, flips them back over if there is no match, checks for winning 
+//conditions, and adjusts the number of matches. The first line is a conditional that checks the clicked card to make sure it does not 
+//contain the 'open, show or match' class. If the cards do not contain any of these three classes the object data is then pushed into 
+//the openCards array. The 'flipped' card then has the open and show class added to it to reveal the card's symbol. If there is two
+//cards "flipped" the conditional then checks if the id of the first card added to the openCards array matches the id of the second 
+//card in the openCards array. If the ids match, the match class is added to the cards, the openCards array is cleared, and the matches
+//count has one match added to it. If the match count equals eight the game is won and the winner's modal is trigger using the 
+//openModal function. Otherwise the classes of 'open' and 'show' are removed from the cards allowing them to be 'flipped' back over
+//
 function flipCard(){
 	if(!this.classList.contains('open show')&&!this.classList.contains('match')){
 		openCards.push(this);
@@ -64,6 +87,7 @@ function flipCard(){
 			}
 	};
 }
+//Using jQuery this sets an event listener for 'click' on the .card class. When a card is clicked on, the flipCard(); function will run.
 $('.card').click(flipCard);
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array){
